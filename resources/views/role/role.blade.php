@@ -6,7 +6,7 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary mb-2">DataTable Role</h6>
             <a href="{{ route('role.create') }}" class="btn btn-primary">Tambah Data</a>
-            <a href="#" class="btn btn-success">Cetak Role</a>
+            <a href="{{ route('role.report') }}" class="btn btn-success">Cetak Role</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">

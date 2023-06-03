@@ -11,7 +11,7 @@
         <div class="card-header py-3">
             <h6 class="m-0 mb-2 font-weight-bold text-primary">DataTable User</h6>
             <a href="{{ route('user.create') }}" class="btn btn-primary">Tambah data</a>
-            <a href="#" class="btn btn-dark mx-2">Cetak hasil</a>
+            <a href="{{ route('user.report') }}" class="btn btn-dark mx-2">Cetak hasil</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -21,7 +21,22 @@
                             <th>Nama</th>
                             <th>Email</th>
                             <th>Password</th>
+                            <th>ID Role</th>
+                            <th>Aksi</th>
                         </tr>
+                        @forelse ($user as $item)
+                            <tr>
+                                <td>{{$item->nama_user }}</td>
+                                <td>{{ $item->email}}</td>
+                                <td>{{ $item->password}}</td>
+                                <td>{{ $item->id_role}}</td>
+                                <td>
+                                    <a href="{{ route('user.edit', ['id' => $item->id]) }}" class="btn btn-warning">Edit</a>
+                                    <a href="{{ route('user.destroy', ['id' => $item->id]) }}" class="btn btn-danger">Hapus</a>
+                                </td>
+                            </tr>
+                        @empty
+                        @endforelse
                     </thead>
                     </tbody>
                 </table>

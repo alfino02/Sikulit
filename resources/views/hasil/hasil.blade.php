@@ -24,21 +24,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>PN001</td>
-                            <td>U001</td>
-                            
-                        </tr>
-                        <tr>
-                            <td>PN002</td>
-                            <td>U002</td>
-                            
-                        </tr>
-                        <tr>
-                            <td>PN003</td>
-                            <td>U003</td>
-                        </tr>
-                       
                     </tbody>
                 </table>
             </div>

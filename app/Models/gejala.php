@@ -14,4 +14,7 @@ class gejala extends Model
         'kode_gejala',
         'gejala',
     ];
+    public function penyakit(){
+        return $this->belongsToMany(Penyakit::class);
+    }
 }

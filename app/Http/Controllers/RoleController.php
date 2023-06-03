@@ -3,8 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\role;
-use App\Http\Requests\StoreroleRequest;
-use App\Http\Requests\UpdateroleRequest;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\Request;
 
 class RoleController extends Controller
@@ -54,5 +53,15 @@ class RoleController extends Controller
         $role = role::find($id);
         $role->delete();
         return redirect()->route('role')->with('message', 'Data berhasil dihapus');
+    }
+    public function report()
+    {
+        $role = role::all();
+        $pdf = Pdf::loadView('role/report',[
+            'role'=>$role
+        
+        ]);
+        return $pdf->download('eksportrole.pdf');
+
     }
 }

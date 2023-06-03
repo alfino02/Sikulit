@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\role;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\hash;
 
 class UserController extends Controller
 {
@@ -30,17 +31,13 @@ class UserController extends Controller
     }
     public function store(Request $request)
     {
-        $user = new User([
-        'nama_user' => $request->namauser,
-        'email' => $request->email,
-        'password' => $request->password,
-        'role' => $request->role,]);
-        // $penyakit->create([
-        //     'nama_penyakit' => $request->namapenyakit,
-        //     'foto_penyakit' => $image_name,
-        //     'deskripsi_penyakit' => $request->deskripsi,
-        //     'id_obat' => $request->obat,
-        // ]);
+        $user = new User();
+        $user = User::create([
+            'nama_user' => $request->namauser,
+            'email' => $request->email,
+            'password' => hash::make($request->password),
+            'id_role' => $request->role,
+        ]);
         $user->save();
         return redirect()->route('user');
     }
@@ -67,5 +64,15 @@ class UserController extends Controller
     {
         User::where("id", $id)->delete();
         return redirect()->route ("user");
+    }
+    public function report()
+    {
+        $user = user::all();
+        $pdf = Pdf::loadView('user/report',[
+            'user'=>$user
+        
+        ]);
+        return $pdf->download('eksportuser.pdf');
+
     }
 }

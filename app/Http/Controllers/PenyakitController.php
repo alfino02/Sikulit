@@ -6,6 +6,7 @@ use App\Models\obat;
 use App\Models\Penyakit;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class PenyakitController extends Controller
 {
@@ -85,6 +86,16 @@ class PenyakitController extends Controller
     {
         penyakit::where("id", $id)->delete();
         return redirect()->route ("penyakit");
+    }
+    public function report()
+    {
+        $penyakit = penyakit::all();
+        $pdf = Pdf::loadView('penyakit/report',[
+            'penyakit'=>$penyakit
+        
+        ]);
+        return $pdf->download('eksportpenyakit.pdf');
+
     }
 }
 

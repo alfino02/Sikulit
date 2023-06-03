@@ -3,8 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\konsultasi;
-use App\Http\Requests\StorekonsultasiRequest;
-use App\Http\Requests\UpdatekonsultasiRequest;
+use App\Models\gejala;
+use App\Models\hasil;
+use App\Models\gejala_penyakit;
+use App\Models\penyakit;
+use Carbon\Carbon;
+use Illuminate\Http\Request;
 
 class KonsultasiController extends Controller
 {
@@ -14,71 +18,80 @@ class KonsultasiController extends Controller
     }
     public function index()
     {
-        return view("konsultasi/konsultasi");
+        $gejala = gejala::all();
+        return view("konsultasi/konsultasi", ['gejala' => $gejala]);
+    }
+
+    public function create()
+    {
         
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+
+    public function store(Request $request)
     {
-        //
+        $results = new hasil();
+        $DataRegulation = gejala_penyakit::all();
+        $selectedIndication= $request->gejala;
+        $regulation = [];
+        foreach ($DataRegulation as $item){
+            if(!isset($regulation[$item->id_penyakit])){
+                $regulation[$item->id_penyakit] = [];
+            }
+            array_push($regulation[$item->id_penyakit], $item->gejala_id);
+        }
+        $result = [];
+        foreach($regulation as $key => $rules){
+            foreach ($selectedIndication as $select){ 
+                if(in_array($select, $rules)){
+                    if(!isset($result[$key])){
+                        $result[$key] = 1;
+                    }else{
+                        $result[$key] = $result[$key] + 1;
+                    }
+                }
+            }
+        }
+        if (count($result) > 0){
+            $max_keys = array_keys($result, max($result));
+            // $sickness = penyakit::where('id', '=', $max_keys[0])->get();
+            // $indications = gejala::all();
+            // $arrayShow = [
+            //     'result' => $sickness,
+            //     'indications' => $indications,
+            //     'found' =>'Your Sickness Diagnosis Has Been Found'
+            // ];
+            //$myTime = Carbon::now();
+            $results = hasil::Create([
+                // 'datetime' => $myTime->toDateTimeString(),
+                'id_penyakit' =>  $max_keys[0],
+                'id_user' => auth()->user()->id,
+            ]);
+            // $results->indication()->attach($request->indication);
+            $results->save();
+            return redirect()->route('aturan');
+        }else{
+            return redirect()->back()->with('failed-diagnosis', "Sickness wasn't found");
+        }
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StorekonsultasiRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StorekonsultasiRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\konsultasi  $konsultasi
-     * @return \Illuminate\Http\Response
-     */
     public function show(konsultasi $konsultasi)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\konsultasi  $konsultasi
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit(konsultasi $konsultasi)
     {
         //
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdatekonsultasiRequest  $request
-     * @param  \App\Models\konsultasi  $konsultasi
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdatekonsultasiRequest $request, konsultasi $konsultasi)
+
+    public function update(Request $request, konsultasi $konsultasi)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\konsultasi  $konsultasi
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(konsultasi $konsultasi)
     {
         //

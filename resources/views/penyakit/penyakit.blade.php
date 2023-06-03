@@ -11,7 +11,7 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">DataTable Aturan</h6>
             <a href="{{ route("penyakit.create") }}" class="btn btn-primary">Tambah Data</a>
-            <button type="button" class="btn btn-dark">Cetak Penyakit</button>
+            <a href="{{ route('penyakit.report') }}" class="btn btn-success">Cetak Data</a>
             
         </div>
         <div class="card-body">

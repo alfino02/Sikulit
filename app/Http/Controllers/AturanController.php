@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\aturan;
-use App\Http\Requests\StoreaturanRequest;
-use App\Http\Requests\UpdateaturanRequest;
+use App\Models\Penyakit;
+use App\Models\gejala;
+use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class AturanController extends Controller
 {
@@ -14,67 +16,44 @@ class AturanController extends Controller
     }
     public function index()
     {
-        return view("aturan.aturan");
+        $penyakit = penyakit::all();
+        return view("aturan.aturan", ['penyakit' => $penyakit]);
     }
 
     public function create()
     {
-        //
+        return view("aturan.create");
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \App\Http\Requests\StoreaturanRequest  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(StoreaturanRequest $request)
+    public function edit(aturan $aturan, $id)
     {
-        //
+        $gejala = gejala::all();
+        $penyakit = penyakit::find($id);
+        return view('aturan.edit', ['aturan' => $penyakit, 'gejala'=> $gejala]);
+    }
+    public function update(Request $request,$id)
+    {
+        $penyakit = penyakit::find($id);
+        penyakit::where('id', $id)->update([
+            'nama_penyakit' => $request->namapenyakit,
+        ]);
+        $penyakit->gejala()->sync($request->idpilih);
+        return redirect()->route('aturan');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\aturan  $aturan
-     * @return \Illuminate\Http\Response
-     */
-    public function show(aturan $aturan)
+    public function destroy($id)
     {
-        //
+        Penyakit::where("id", $id)->delete();
+        return redirect()->route ("aturan");
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\aturan  $aturan
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(aturan $aturan)
+    public function report()
     {
-        //
-    }
+        $aturan = penyakit::all();
+        $pdf = Pdf::loadView('aturan/report',[
+            'aturan'=>$aturan
+        
+        ]);
+        return $pdf->download('eksportaturan.pdf');
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \App\Http\Requests\UpdateaturanRequest  $request
-     * @param  \App\Models\aturan  $aturan
-     * @return \Illuminate\Http\Response
-     */
-    public function update(UpdateaturanRequest $request, aturan $aturan)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\aturan  $aturan
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(aturan $aturan)
-    {
-        //
     }
 }

@@ -10,14 +10,44 @@
     <meta name="author" content="">
 
     @if (auth()->user()->id_role == 1)
-    <title>ADMIN</title>
+        <title>ADMIN</title>
     @endif
     @if (auth()->user()->id_role == 2)
-    <title>DOKTER</title>
+        <title>DOKTER</title>
     @endif
     @if (auth()->user()->id_role == 3)
-    <title>USER</title>
+        <title>USER</title>
     @endif
+
+    {{-- <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.1/mdb.min.css" rel="stylesheet" />
+    
+
+    <!-- MDB -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.3.1/mdb.min.js"></script> --}}
+
+    {{-- <link rel="stylesheet" href="{{ asset('css/mdb.min.css') }}" />
+    <script type="text/javascript" src="{{ asset('js/mdb.min.js') }}"></script> --}}
+
+    {{-- <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script> --}}
+
+
+        <!-- Styles -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.min.css" />
+<!-- Or for RTL support -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/select2-bootstrap-5-theme@1.3.0/dist/select2-bootstrap-5-theme.rtl.min.css" />
+
+<!-- Scripts -->
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.0/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
     <!-- Custom fonts for this template-->
     <link href="{{ asset('assets') }}/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -45,13 +75,13 @@
                     <i class="fas fa-laugh-wink"></i>
                 </div>
                 @if (auth()->user()->id_role == 1)
-                <div class="sidebar-brand-text mx-3">Admin Sikulit</div>
+                    <div class="sidebar-brand-text mx-3">Admin Sikulit</div>
                 @endif
                 @if (auth()->user()->id_role == 2)
-                <div class="sidebar-brand-text mx-3">Dokter Sikulit</div>
+                    <div class="sidebar-brand-text mx-3">Dokter Sikulit</div>
                 @endif
                 @if (auth()->user()->id_role == 3)
-                <div class="sidebar-brand-text mx-3">User Sikulit</div>
+                    <div class="sidebar-brand-text mx-3">User Sikulit</div>
                 @endif
             </a>
 
@@ -59,13 +89,13 @@
             <hr class="sidebar-divider my-0">
             <!-- Divider -->
             <hr class="sidebar-divider">
-                
+
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                
+
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
@@ -84,80 +114,80 @@
                 </div>
             </li>
             @if (auth()->user()->id_role == 1)
-            <li class="nav-item active">
-                <a href="{{ route('dashboard') }}" class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a href="{{ route('user') }}" class="nav-link" href="charts.html">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>User</span></a>
-            </li>
+                <li class="nav-item active">
+                    <a href="{{ route('dashboard') }}" class="nav-link" href="index.html">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span></a>
+                </li>
+                <!-- Nav Item - Charts -->
+                <li class="nav-item">
+                    <a href="{{ route('user') }}" class="nav-link" href="charts.html">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>User</span></a>
+                </li>
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('role') }}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Role</span></a>
-            </li>
-             <!-- Nav Item - Tables -->
-             <li class="nav-item">
-                <a class="nav-link" href="{{ route('hasil') }}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Hasil</span></a>
-            </li>
+                <!-- Nav Item - Tables -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('role') }}">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Role</span></a>
+                </li>
+                <!-- Nav Item - Tables -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('hasil') }}">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Hasil</span></a>
+                </li>
             @endif
             @if (auth()->user()->id_role == 2)
-            <li class="nav-item active">
-                <a href="{{ route('dashboarddokter') }}" class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('obat') }}" class="nav-link">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Obat</span></a>
-            </li>
+                <li class="nav-item active">
+                    <a href="{{ route('dashboarddokter') }}" class="nav-link" href="index.html">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('obat') }}" class="nav-link">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Obat</span></a>
+                </li>
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('penyakit') }}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Penyakit</span></a>
-            </li>
-             <!-- Nav Item - Tables -->
-             <li class="nav-item">
-                <a class="nav-link" href="{{ route('gejala') }}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Gejala</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('aturan') }}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>Aturan</span></a>
-            </li>
+                <!-- Nav Item - Tables -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('penyakit') }}">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Penyakit</span></a>
+                </li>
+                <!-- Nav Item - Tables -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('gejala') }}">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Gejala</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('aturan') }}">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>Aturan</span></a>
+                </li>
             @endif
             <!-- Nav Item - Charts -->
             @if (auth()->user()->id_role == 3)
-            <li class="nav-item active">
-                <a href="{{ route('dashboarduser') }}" class="nav-link" href="index.html">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-            <li class="nav-item">
-                <a href="{{ route('konsultasi') }}" class="nav-link">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Konsultasi</span></a>
-            </li>
+                <li class="nav-item active">
+                    <a href="{{ route('dashboarduser') }}" class="nav-link" href="index.html">
+                        <i class="fas fa-fw fa-tachometer-alt"></i>
+                        <span>Dashboard</span></a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('konsultasi') }}" class="nav-link">
+                        <i class="fas fa-fw fa-chart-area"></i>
+                        <span>Konsultasi</span></a>
+                </li>
 
-            <!-- Nav Item - Tables -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('hasilpasien') }}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>hasil Diagnosa</span></a>
-            </li>
+                <!-- Nav Item - Tables -->
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('hasilpasien') }}">
+                        <i class="fas fa-fw fa-table"></i>
+                        <span>hasil Diagnosa</span></a>
+                </li>
             @endif
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -202,8 +232,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{-- <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span> --}}
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -221,7 +250,8 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a href="{{ route('logout') }}" class="dropdown-item" data-toggle="modal" data-target="#logoutModal" href="#">
+                                <a href="{{ route('logout') }}" class="dropdown-item" data-toggle="modal"
+                                    data-target="#logoutModal" href="#">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -237,7 +267,7 @@
                 <div class="container-fluid">
                     @yield('content')
                     <!-- Page Heading -->
-                    
+
                 </div>
                 <!-- /.container-fluid -->
 

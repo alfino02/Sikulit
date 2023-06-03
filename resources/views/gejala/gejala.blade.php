@@ -11,7 +11,7 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">DataTable Gejala</h6>
             <a href="{{ route('gejala.create') }}" class="btn btn-primary">Tambah Data</a>
-            <button type="button" class="btn btn-dark">Cetak Gejala</button>
+            <a href="{{ route('gejala.report') }}" class="btn btn-success">Cetak Data</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">

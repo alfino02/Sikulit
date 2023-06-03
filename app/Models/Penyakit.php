@@ -16,4 +16,10 @@ class Penyakit extends Model
         'deskripsi_penyakit',
         'id_obat',
     ];
+    public function gejala(){
+        return $this->belongsToMany(gejala::class)->withTimestamps();
+    }
+    public function gejalas(){
+        return $this->belongsToMany(gejala::class, 'gejala_penyakit', 'penyakit_id', 'gejala_id');
+    }
 }

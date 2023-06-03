@@ -11,7 +11,7 @@
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">DataTable Obat</h6>
             <a href="{{ route('obat.create') }}" class="btn btn-primary">Tambah Data</a>
-            <button type="button" class="btn btn-dark">Cetak Obat</button>
+            <a href="{{ route('obat.report') }}" class="btn btn-success">Cetak Data</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -20,6 +20,7 @@
                         <tr>
                             <th>Nama Obat</th>
                             <th>Despkripsi Obat</th>
+                            <th>Aksi</th>
                         </tr>
                         @forelse ($obat as $item)
                             <tr>

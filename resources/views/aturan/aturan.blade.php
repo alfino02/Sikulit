@@ -10,8 +10,8 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">DataTable Aturan</h6>
-            <a href="{{ route('role.create') }}" class="btn btn-primary">Tambah Data</a>
-            <button type="button" class="btn btn-dark">Cetak Aturan</button>
+            <a href="{{ route('aturan.create') }}" class="btn btn-primary">Tambah Data</a>
+            <a href="{{ route('aturan.report') }}" class="btn btn-success">Cetak Data</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -21,28 +21,22 @@
                             <th>Id Penyakit</th>
                             <th>Id Gejala</th>
                         </tr>
+                        
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Tifus</td>
-                            <td>Badan meriang</td>
-                        </tr>
-                        <tr>
-                            <td>HIV</td>
-                            <td>Menyerang Antibodi tubuh</td>
-                        </tr>
-                        <tr>
-                            <td>AIDS</td>
-                            <td>Menyerang kekebalan tubuh</td>
-                        </tr>
-                        <tr>
-                            <td>Tumor</td>
-                            <td>Pertumbuhan dging Yang tidak wajar</td>
-                        </tr>
-                        <tr>
-                            <td>Flu</td>
-                            <td>Tenggorokan Kering Dan Sakit/td>
-                        </tr>
+                        @forelse ($penyakit as $item)
+                            <tr>
+                                <td>{{$item->nama_penyakit }}</td>
+                                <td>@foreach ($item->gejalas as $show)
+                                    {{ $show->kode_gejala }}
+                                @endforeach</td>
+                                <td>
+                                    <a href="{{ route('aturan.edit', ['id' => $item->id]) }}" class="btn btn-warning">Edit</a>
+                                    <a href="{{ route('aturan.destroy', ['id' => $item->id]) }}" class="btn btn-danger">Hapus</a>
+                                </td>
+                            </tr>
+                        @empty
+                        @endforelse
                     </tbody>
                 </table>
             </div>

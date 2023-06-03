@@ -49,6 +49,7 @@ Route::group(['middleware' => ['is_admin']], function () {
     Route::get('/role/edit/{id}',  [RoleController::class, 'edit'])->name("role.edit");
     Route::patch('/role/update/{id}',  [RoleController::class, 'update'])->name("role.update");
     Route::get('/role/destroy/{id}',  [RoleController::class, 'destroy'])->name("role.destroy");
+    Route::get('/role/report', [RoleController::class, 'report'])->name("role.report");
 
     // User
     Route::get('/user',  [UserController::class, 'index'])->name("user");
@@ -57,6 +58,7 @@ Route::group(['middleware' => ['is_admin']], function () {
     Route::get('/user/edit{id}',  [UserController::class, 'edit'])->name("user.edit");
     Route::get('/user/update/{id}',  [UserController::class, 'update'])->name("user.update");
     Route::get('/user/destroy/{id}',  [UserController::class, 'destroy'])->name("user.destroy");
+    Route::get('/user/report', [UserController::class, 'report'])->name("user.report");
     //hasil
     Route::get('/hasil',  [HasilController::class, 'index'])->name("hasil");
     Route::get('/hasil/create',  [HasilController::class, 'create'])->name("hasil.create");
@@ -64,6 +66,7 @@ Route::group(['middleware' => ['is_admin']], function () {
     Route::get('/hasil/edit/{id}',  [HasilController::class, 'edit'])->name("hasil.edit");
     Route::patch('/hasil/update/{id}',  [HasilController::class, 'update'])->name("hasil.update");
     Route::get('/hasil/destroy/{id}',  [HasilController::class, 'destroy'])->name("hasil.destroy");
+    Route::get('/hasil/report', [HasilController::class, 'report'])->name("hasil.report");
 });
 
     Route::group(['middleware' => ['is_dokter']], function () {
@@ -76,6 +79,7 @@ Route::group(['middleware' => ['is_admin']], function () {
     Route::get('/penyakit/edit/{id}', [PenyakitController::class, 'edit'])->name("penyakit.edit");
     Route::patch('/penyakit/update/{id}', [PenyakitController::class, 'update'])->name("penyakit.update");
     Route::get('/penyakit/destroy/{id}', [PenyakitController::class, 'destroy'])->name("penyakit.destroy");
+    Route::get('/penyakit/report', [PenyakitController::class, 'report'])->name("penyakit.report");
     //obat
     Route::get('/obat',  [ObatController::class, 'index'])->name("obat");
     Route::get('/obat/create',  [ObatController::class, 'create'])->name("obat.create");
@@ -83,6 +87,7 @@ Route::group(['middleware' => ['is_admin']], function () {
     Route::get('/obat/edit/{id}',  [ObatController::class, 'edit'])->name("obat.edit");
     Route::patch('/obat/update/{id}',  [ObatController::class, 'update'])->name("obat.update");
     Route::get('/obat/destroy/{id}',  [ObatController::class, 'destroy'])->name("obat.destroy");
+    Route::get('/obat/report', [ObatController::class, 'report'])->name("obat.report");
     //gejala
     Route::get('/gejala',  [GejalaController::class, 'index'])->name("gejala");
     Route::get('/gejala/create',  [GejalaController::class, 'create'])->name("gejala.create");
@@ -90,13 +95,15 @@ Route::group(['middleware' => ['is_admin']], function () {
     Route::get('/gejala/edit/{id}',  [GejalaController::class, 'edit'])->name("gejala.edit");
     Route::patch('/gejala/update/{id}',  [GejalaController::class, 'update'])->name("gejala.update");
     Route::get('/gejala/destroy/{id}',  [GejalaController::class, 'destroy'])->name("gejala.destroy");
+    Route::get('/gejala/report', [GejalaController::class, 'report'])->name("gejala.report");
     //aturan
     Route::get('/aturan',  [AturanController::class, 'index'])->name("aturan");
     Route::get('/aturan/create',  [AturanController::class, 'create'])->name("aturan.create");
     Route::post('/aturan/store',  [AturanController::class, 'store'])->name("aturan.store");
     Route::get('/aturan/edit/{id}',  [AturanController::class, 'edit'])->name("aturan.edit");
-    Route::patch('/aturan/update/{id}',  [AturanController::class, 'gejala'])->name("aturan.update");
+    Route::patch('/aturan/update/{id}',  [AturanController::class, 'update'])->name("aturan.update");
     Route::get('/aturan/destroy/{id}',  [AturanController::class, 'destroy'])->name("aturan.destroy");
+    Route::get('/aturan/report', [AturanController::class, 'report'])->name("aturan.report");
 });
 
 Route::group(['middleware' => ['is_user']], function () {

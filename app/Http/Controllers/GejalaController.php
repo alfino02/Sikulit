@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\gejala;
 use Illuminate\Http\Request;
-// use App\Http\Requests\StoregejalaRequest;
-// use App\Http\Requests\UpdategejalaRequest;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class GejalaController extends Controller
 {
@@ -56,6 +55,16 @@ class GejalaController extends Controller
     {
         gejala::where("id", $id)->delete();
         return redirect()->route ("gejala");
+    }
+    public function report()
+    {
+        $gejala = gejala::all();
+        $pdf = Pdf::loadView('gejala/report',[
+            'gejala'=>$gejala
+        
+        ]);
+        return $pdf->download('eksportgejala.pdf');
+
     }
 }
 

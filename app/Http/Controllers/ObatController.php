@@ -4,8 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\obat;
 use Illuminate\Http\Request;
-// use App\Http\Requests\StoreobatRequest;
-// use App\Http\Requests\UpdateobatRequest;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class ObatController extends Controller
 {
@@ -54,5 +53,15 @@ class ObatController extends Controller
     {
         obat::where("id", $id)->delete();
         return redirect()->route ("obat");
+    }
+    public function report()
+    {
+        $obat = obat::all();
+        $pdf = Pdf::loadView('obat/report',[
+            'obat'=>$obat
+        
+        ]);
+        return $pdf->download('eksportobat.pdf');
+
     }
 }
