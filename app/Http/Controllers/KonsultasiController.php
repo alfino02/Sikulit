@@ -35,10 +35,10 @@ class KonsultasiController extends Controller
         $selectedIndication= $request->gejala;
         $regulation = [];
         foreach ($DataRegulation as $item){
-            if(!isset($regulation[$item->id_penyakit])){
-                $regulation[$item->id_penyakit] = [];
+            if(!isset($regulation[$item->penyakit_id])){
+                $regulation[$item->penyakit_id] = [];
             }
-            array_push($regulation[$item->id_penyakit], $item->gejala_id);
+            array_push($regulation[$item->penyakit_id], $item->gejala_id);
         }
         $result = [];
         foreach($regulation as $key => $rules){
@@ -69,7 +69,7 @@ class KonsultasiController extends Controller
             ]);
             // $results->indication()->attach($request->indication);
             $results->save();
-            return redirect()->route('aturan');
+            return redirect()->route('hasilpasien');
         }else{
             return redirect()->back()->with('failed-diagnosis', "Sickness wasn't found");
         }

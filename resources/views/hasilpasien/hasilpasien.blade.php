@@ -1,4 +1,4 @@
-@extends('layout.layoutpas')
+@extends('layout.layout')
 @section('content')
     <!-- Earnings (Monthly) Card Example -->
 
@@ -6,8 +6,7 @@
     <div class="card shadow mb-4">
         <div class="card-header py-3">
             <h6 class="m-0 font-weight-bold text-primary">DataTables Hasil Konsultasi</h6>
-            <a href="{{ route('role.create') }}" class="btn btn-primary">Tambah Data</a>
-            <button type="button" class="btn btn-dark">Cetak hasil Diagnosa</button>
+            <a href="{{ route('hasilpasien.report') }}" class="btn btn-success">Cetak Hasil Diagnosa</a>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -19,26 +18,13 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @forelse ($hasilpasien as $item)
                         <tr>
-                            <td>Daboi</td>
-                            <td>Tifus</td>
+                            <td>{{$item->user->nama_user }}</td>
+                            <td>{{ $item->penyakit->nama_penyakit}}</td>
                         </tr>
-                        <tr>
-                            <td>Surur</td>
-                            <td>HIV</td>
-                        </tr>
-                        <tr>
-                            <td>Yondu</td>
-                            <td>AIDS</td>
-                        </tr>
-                        <tr>
-                            <td>Firman</td>
-                            <td>Tumor</td>
-                        </tr>
-                        <tr>
-                            <td>Indra</td>
-                            <td>Cantengan</td>
-                        </tr>
+                    @empty
+                    @endforelse
                     </tbody>
                 </table>
             </div>

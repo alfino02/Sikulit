@@ -19,6 +19,9 @@ class Penyakit extends Model
     public function gejala(){
         return $this->belongsToMany(gejala::class)->withTimestamps();
     }
+    public function hasilpasien(){
+        return $this->hasMany(hasil::class,'id');
+    }
     public function gejalas(){
         return $this->belongsToMany(gejala::class, 'gejala_penyakit', 'penyakit_id', 'gejala_id');
     }

@@ -126,6 +126,7 @@ Route::post('/hasilpasien/store',  [HasilpasienController::class, 'store'])->nam
 Route::get('/hasilpasien/edit/{id}',  [HasilpasienControllerr::class, 'edit'])->name("hasilpasien.edit");
 Route::patch('/hasilpasien/update/{id}',  [HasilpasienController::class, 'gejala'])->name("hasilpasien.update");
 Route::get('/hasilpasien/destroy/{id}',  [HasilpasienController::class, 'destroy'])->name("hasilpasien.destroy");
+Route::get('/hasilpasien/report', [HasilpasienController::class, 'report'])->name("hasilpasien.report");
 });
 
 

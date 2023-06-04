@@ -12,4 +12,10 @@ class hasil extends Model
         'id_penyakit',
         'id_user',
     ];
+    public function penyakit(){
+        return $this ->belongsTo(penyakit::class,'id_penyakit');
+    }
+    public function user(){
+        return $this ->belongsTo(user::class,'id_user');
+    }
 }
